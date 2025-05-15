@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Algoritmos de Optimización</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+    header {
+      background-color: #004d99;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #004d99;
+    }
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 14px;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Algoritmos de Optimización</h1>
+    <p>Hill Climbing y Algoritmos Genéticos Evolutivos</p>
+  </header>
+
+  <section>
+    <div class="card">
+      <h2>1. ¿Qué es Hill Climbing?</h2>
+      <p>Hill Climbing es un algoritmo de búsqueda heurística utilizado para encontrar una solución óptima al ir mejorando iterativamente una solución inicial. Se mueve hacia una mejor solución siempre que sea posible, es decir, solo acepta cambios que mejoran el resultado. Es útil en problemas de optimización donde se desea maximizar o minimizar una función objetivo.</p>
+    </div>
+
+    <div class="card">
+      <h2>2. ¿Qué son los Algoritmos Genéticos Evolutivos?</h2>
+      <p>Los algoritmos genéticos son métodos de búsqueda y optimización inspirados en la evolución biológica. Utilizan operadores como selección, cruce (crossover) y mutación para evolucionar una población de posibles soluciones hacia mejores resultados. Se basan en principios de la genética natural y son efectivos para resolver problemas complejos donde otras técnicas pueden fallar.</p>
+    </div>
+
+    <div class="card">
+      <h2>3. Implementación en Python</h2>
+      <p>A continuación, se presentan ejemplos básicos de implementación de ambos algoritmos en Python para la función <code>f(x) = -x² + 10x</code>:</p>
+
+      <h3>🔺 Hill Climbing</h3>
+      <pre><code>import random
+
+def funcion_objetivo(x):
+    return -x**2 + 10*x
+
+def hill_climbing():
+    x = random.uniform(0, 10)
+    paso = 0.1
+    max_iter = 100
+
+    for _ in range(max_iter):
+        vecino = x + random.choice([-paso, paso])
+        if 0 <= vecino <= 10 and funcion_objetivo(vecino) > funcion_objetivo(x):
+            x = vecino
+
+    return x, funcion_objetivo(x)
+
+mejor_x, mejor_valor = hill_climbing()
+print(f"Mejor x: {mejor_x:.4f} con valor: {mejor_valor:.4f}")</code></pre>
+
+      <h3>🧬 Algoritmo Genético</h3>
+      <pre><code>import random
+
+def funcion_objetivo(x):
+    return -x**2 + 10*x
+
+def crear_individuo():
+    return random.uniform(0, 10)
+
+def mutar(x, tasa=0.1):
+    return x + random.uniform(-tasa, tasa)
+
+def cruzar(padre1, padre2):
+    return (padre1 + padre2) / 2
+
+def algoritmo_genetico(poblacion_size=10, generaciones=20):
+    poblacion = [crear_individuo() for _ in range(poblacion_size)]
+
+    for _ in range(generaciones):
+        poblacion = sorted(poblacion, key=funcion_objetivo, reverse=True)
+        nueva_poblacion = poblacion[:2]
+
+        while len(nueva_poblacion) < poblacion_size:
+            padre1, padre2 = random.sample(poblacion[:5], 2)
+            hijo = cruzar(padre1, padre2)
+            hijo = mutar(hijo)
+            hijo = max(0, min(10, hijo))
+            nueva_poblacion.append(hijo)
+
+        poblacion = nueva_poblacion
+
+    mejor = max(poblacion, key=funcion_objetivo)
+    return mejor, funcion_objetivo(mejor)
+
+mejor_x, mejor_valor = algoritmo_genetico()
+print(f"Mejor x: {mejor_x:.4f} con valor: {mejor_valor:.4f}")</code></pre>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 - Proyecto de Optimización</p>
+  </footer>
+</body>
+</html>
