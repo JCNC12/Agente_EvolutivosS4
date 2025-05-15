@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Algoritmos de Optimización</title>
+  <title>Algoritmos Evolutivos</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -41,6 +41,12 @@
       overflow-x: auto;
       font-size: 14px;
     }
+    ul {
+      margin-top: 10px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
     footer {
       text-align: center;
       padding: 10px;
@@ -50,7 +56,7 @@
 </head>
 <body>
   <header>
-    <h1>Algoritmos de Optimización</h1>
+    <h1>Algoritmos de Evolutivos</h1>
     <p>Hill Climbing y Algoritmos Genéticos Evolutivos</p>
   </header>
 
@@ -58,11 +64,43 @@
     <div class="card">
       <h2>1. ¿Qué es Hill Climbing?</h2>
       <p>Hill Climbing es un algoritmo de búsqueda heurística utilizado para encontrar una solución óptima al ir mejorando iterativamente una solución inicial. Se mueve hacia una mejor solución siempre que sea posible, es decir, solo acepta cambios que mejoran el resultado. Es útil en problemas de optimización donde se desea maximizar o minimizar una función objetivo.</p>
+
+      <h3>⚙️ Características clave:</h3>
+      <ul>
+        <li>Es un algoritmo <strong>greedy</strong>: siempre avanza hacia soluciones que mejoran la actual.</li>
+        <li>Rápido y simple, pero puede quedarse atrapado en óptimos locales.</li>
+        <li>Es útil cuando se desconoce la estructura global del problema.</li>
+      </ul>
+
+      <h3>🧭 Variantes:</h3>
+      <ul>
+        <li><strong>Hill Climbing Simple</strong>: analiza una vecina aleatoria por iteración.</li>
+        <li><strong>Steepest-Ascent Hill Climbing</strong>: evalúa todos los vecinos posibles y elige el mejor.</li>
+        <li><strong>Hill Climbing con reinicios aleatorios</strong>: se ejecuta múltiples veces desde puntos distintos para evitar óptimos locales.</li>
+      </ul>
     </div>
 
     <div class="card">
       <h2>2. ¿Qué son los Algoritmos Genéticos Evolutivos?</h2>
       <p>Los algoritmos genéticos son métodos de búsqueda y optimización inspirados en la evolución biológica. Utilizan operadores como selección, cruce (crossover) y mutación para evolucionar una población de posibles soluciones hacia mejores resultados. Se basan en principios de la genética natural y son efectivos para resolver problemas complejos donde otras técnicas pueden fallar.</p>
+
+      <h3>🔄 Proceso general:</h3>
+      <ul>
+        <li><strong>Inicialización</strong>: se crea una población inicial de soluciones (individuos).</li>
+        <li><strong>Evaluación</strong>: se mide el rendimiento (fitness) de cada individuo.</li>
+        <li><strong>Selección</strong>: se eligen los individuos más aptos.</li>
+        <li><strong>Cruce (crossover)</strong>: se combinan dos individuos para generar descendencia.</li>
+        <li><strong>Mutación</strong>: se hacen pequeños cambios aleatorios para mantener la diversidad.</li>
+        <li><strong>Reemplazo</strong>: la nueva generación sustituye a la anterior.</li>
+      </ul>
+
+      <h3>🧬 Aplicaciones:</h3>
+      <ul>
+        <li>Optimización de rutas.</li>
+        <li>Diseño de redes neuronales.</li>
+        <li>Problemas combinatorios.</li>
+        <li>Ajuste de parámetros en modelos complejos.</li>
+      </ul>
     </div>
 
     <div class="card">
